@@ -34,6 +34,25 @@
                 <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".DesignWidgetDemo"
+            android:label="DesignWidgetDemo"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".DataBindingDemo"
+            android:label="DataBindingDemo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
