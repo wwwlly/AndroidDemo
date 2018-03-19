@@ -53,6 +53,15 @@
                 <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Dagger2Demo"
+            android:label="Dagger2Demo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
