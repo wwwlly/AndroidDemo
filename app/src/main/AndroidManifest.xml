@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kemp.demo">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,7 +19,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RecyclerViewDemo"
+        <activity
+            android:name=".RecyclerViewDemo"
             android:label="RecyclerViewDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +29,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ProcesserDemo"
+        <activity
+            android:name=".ProcesserDemo"
             android:label="ProcesserDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +39,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DesignWidgetDemo"
+        <activity
+            android:name=".DesignWidgetDemo"
             android:label="DesignWidgetDemo"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
@@ -45,7 +50,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DataBindingDemo"
+        <activity
+            android:name=".DataBindingDemo"
             android:label="DataBindingDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +60,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Dagger2Demo"
+        <activity
+            android:name=".Dagger2Demo"
             android:label="Dagger2Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,6 +69,22 @@
                 <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".CameraDemo"
+            android:label="CameraDemo"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".CameraResultActivity"
+            android:label="CameraResultActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
