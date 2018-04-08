@@ -80,11 +80,6 @@
                 <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".CameraResultActivity"
-            android:label="CameraResultActivity"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
