@@ -80,6 +80,17 @@
                 <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MyDrawDemo"
+            android:label="MyDrawDemo"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
