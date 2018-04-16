@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Shader;
@@ -34,6 +35,9 @@ public class MyDrawView extends View {
         //设置着色器 渐变色
         LinearGradient lg = new LinearGradient(0,0,100,100,Color.RED,Color.BLUE, Shader.TileMode.MIRROR);
         SweepGradient sg = new SweepGradient(0,0,Color.RED,Color.BLUE);
+        Matrix matrix = new Matrix();
+        matrix.setRotate(270, 0, 0);//设置渐变的角度
+        sg.setLocalMatrix(matrix);
         paint.setShader(lg);
     }
 
