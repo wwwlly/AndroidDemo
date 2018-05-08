@@ -63,11 +63,9 @@ public class IPCDemo extends AppCompatActivity implements View.OnClickListener {
 
     private void bindAIDLService() {
         Intent intent = new Intent();
-        intent.setComponent(new ComponentName("com.kemp.demo.service", "com.kemp.demo.service.MyService"));
+//        intent.setComponent(new ComponentName("com.kemp.demo.service", "com.kemp.demo.service.MyService"));
+        intent = new Intent(getApplicationContext(), MyService.class);
         bindService(intent, mAIDLConnection, BIND_AUTO_CREATE);
-
-        Intent intent1 = new Intent(getApplicationContext(), MyService.class);
-        bindService(intent1, mAIDLConnection, BIND_AUTO_CREATE);
     }
 
     @Override
