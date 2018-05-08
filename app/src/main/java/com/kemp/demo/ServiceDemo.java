@@ -18,6 +18,8 @@ import com.kemp.demo.service.MyService;
 
 public class ServiceDemo extends AppCompatActivity {
 
+    private boolean bind = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +37,13 @@ public class ServiceDemo extends AppCompatActivity {
                 stopService(intent);
                 break;
             case R.id.btn_bind:
-                bindService(intent,connection,BIND_AUTO_CREATE);
+                bind = bindService(intent,connection,BIND_AUTO_CREATE);
                 break;
             case R.id.btn_unbind:
-                unbindService(connection);
+                if(bind){
+                    unbindService(connection);
+                    bind = false;
+                }
                 break;
         }
     }
