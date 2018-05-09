@@ -43,6 +43,8 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG,"onBind");
+        String params = intent.getStringExtra("params");
+        Log.d(TAG,"params:" + params);
         mPersons = new ArrayList<>();
         return mIBinder;
     }
@@ -56,6 +58,8 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG,"onStartCommand");
+        String params = intent.getStringExtra("params");
+        Log.d(TAG,"params:" + params);
         return super.onStartCommand(intent, flags, startId);
     }
 

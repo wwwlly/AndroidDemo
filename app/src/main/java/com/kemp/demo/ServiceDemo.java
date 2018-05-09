@@ -29,6 +29,7 @@ public class ServiceDemo extends AppCompatActivity {
 
     public void onClick(View view) {
         Intent intent = new Intent(this, MyService.class);
+        intent.putExtra("params","params");
         switch (view.getId()) {
             case R.id.btn_start:
                 startService(intent);
