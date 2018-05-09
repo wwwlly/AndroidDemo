@@ -114,6 +114,31 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".LaunchModeDemo"
+            android:label="LaunchModeDemo"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".launchmode.AActivity"
+            android:label="AActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".launchmode.BActivity"
+            android:label="BActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".launchmode.CActivity"
+            android:label="CActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+
         <service
             android:name=".service.MyService"
             android:process=":ipc" />
