@@ -3,6 +3,7 @@
     package="com.kemp.demo">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -139,9 +140,24 @@
             android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".SocketDemo"
+            android:label="SocketDemo"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".service.MyService"
             android:process=":ipc" />
+
+        <service
+            android:name=".socket.SocketService"
+            android:process=":socket" />
     </application>
 
 </manifest>
