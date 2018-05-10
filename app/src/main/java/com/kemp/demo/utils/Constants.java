@@ -1,10 +1,10 @@
-package com.kemp.demo.socket;
+package com.kemp.demo.utils;
 
 /**
  * Created by wangkp on 2018/5/10.
  */
 
-public class SocketConfig {
+public class Constants {
 
     public static final int MSG_ID_CLIENT = 0x001;
     public static final int MSG_ID_SERVER = 0x002;

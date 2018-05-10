@@ -158,6 +158,9 @@
         <service
             android:name=".socket.SocketService"
             android:process=":socket" />
+
+        <service android:name=".service.MessengerService"
+            android:process=":messenger"/>
     </application>
 
 </manifest>

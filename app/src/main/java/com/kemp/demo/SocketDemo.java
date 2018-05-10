@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.kemp.demo.socket.SocketConfig;
+import com.kemp.demo.utils.Constants;
 import com.kemp.demo.socket.SocketService;
 import com.kemp.demo.socket.ThreadPoolManager;
 
@@ -106,7 +106,7 @@ public class SocketDemo extends AppCompatActivity {
         Socket socket = null;
         while (socket == null) {
             try {
-                socket = new Socket("localhost", SocketConfig.TEST_SOCKET_PORT);
+                socket = new Socket("localhost", Constants.TEST_SOCKET_PORT);
                 mClientSocket = socket;
                 mPrintWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
             } catch (IOException e) {

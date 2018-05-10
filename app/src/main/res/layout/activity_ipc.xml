@@ -14,4 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="添加" />
+
+    <TextView
+        android:id="@+id/tv_show_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send Message" />
 </LinearLayout>

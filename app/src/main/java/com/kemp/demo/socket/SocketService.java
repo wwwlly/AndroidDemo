@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.kemp.demo.utils.Constants;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -38,7 +40,7 @@ public class SocketService extends Service {
         public void run() {
             ServerSocket serverSocket;
             try {
-                serverSocket = new ServerSocket(SocketConfig.TEST_SOCKET_PORT);
+                serverSocket = new ServerSocket(Constants.TEST_SOCKET_PORT);
                 Log.d(TAG, "TCP 服务已创建");
             } catch (IOException e) {
                 e.printStackTrace();
