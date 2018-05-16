@@ -5,7 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 /**
@@ -13,6 +15,8 @@ import android.widget.Toast;
  */
 
 public class DesignWidgetDemo extends AppCompatActivity {
+
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,6 +29,11 @@ public class DesignWidgetDemo extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_vector_path);
         ab.setDisplayHomeAsUpEnabled(true);
 
+        CalendarView calendarView = findViewById(R.id.calendar_view);
+        boolean showWeekNumber = calendarView.getShowWeekNumber();
+        Log.d(TAG,"showWeekNumber:" + showWeekNumber);
+        int showWeekCount = calendarView.getShownWeekCount();
+        Log.d(TAG,"showWeekCount:" + showWeekCount);
     }
 
     @Override
