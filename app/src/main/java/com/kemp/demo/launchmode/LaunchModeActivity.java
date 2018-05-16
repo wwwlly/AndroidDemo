@@ -1,5 +1,6 @@
 package com.kemp.demo.launchmode;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,10 +15,11 @@ import android.widget.Button;
  * Created by wangkp on 2018/5/9.
  */
 
-public abstract class LaunchModeActivity extends AppCompatActivity {
+public abstract class LaunchModeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = this.getClass().getSimpleName();
     private Button button;
+    private Class<? extends Activity> aClass;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,14 +43,13 @@ public abstract class LaunchModeActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void setButton(final Class<?> cls) {
+    public void setButton(final Class<? extends Activity> cls) {
+        if(cls == null){
+            return;
+        }
+        aClass = cls;
         button.setText("start_" + cls.getSimpleName());
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(cls);
-            }
-        });
+        button.setOnClickListener(this);
     }
 
     /**
@@ -74,5 +75,10 @@ public abstract class LaunchModeActivity extends AppCompatActivity {
 
     public void startActivity(Class<?> cls) {
         startActivity(newIntent(cls));
+    }
+
+    @Override
+    public void onClick(View v) {
+        startActivity(aClass);
     }
 }

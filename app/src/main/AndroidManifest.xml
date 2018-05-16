@@ -129,7 +129,14 @@
         <activity
             android:name=".launchmode.AActivity"
             android:label="AActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.kemp.demo.launchmode.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.kemp.demo.launchmode.AActivity" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".launchmode.BActivity"
             android:label="BActivity"
@@ -159,8 +166,9 @@
             android:name=".socket.SocketService"
             android:process=":socket" />
 
-        <service android:name=".service.MessengerService"
-            android:process=":messenger"/>
+        <service
+            android:name=".service.MessengerService"
+            android:process=":messenger" />
     </application>
 
 </manifest>
