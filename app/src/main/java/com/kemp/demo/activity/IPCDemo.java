@@ -1,4 +1,4 @@
-package com.kemp.demo;
+package com.kemp.demo.activity;
 
 import android.app.ActivityManager;
 import android.content.ComponentName;
@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.kemp.demo.IMyAidl;
+import com.kemp.demo.R;
 import com.kemp.demo.model.Person;
 import com.kemp.demo.service.MessengerService;
 import com.kemp.demo.service.MyService;

@@ -2,7 +2,7 @@ package com.kemp.demo.dragger2;
 
 import android.util.Log;
 
-import com.kemp.demo.Dagger2Demo;
+import com.kemp.demo.activity.Dagger2Demo;
 
 import javax.inject.Inject;
 

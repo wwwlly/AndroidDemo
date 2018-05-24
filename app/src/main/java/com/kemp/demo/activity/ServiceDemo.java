@@ -1,4 +1,4 @@
-package com.kemp.demo;
+package com.kemp.demo.activity;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import com.kemp.demo.R;
 import com.kemp.demo.service.MyService;
 
 /**

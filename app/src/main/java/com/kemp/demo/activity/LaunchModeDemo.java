@@ -1,4 +1,4 @@
-package com.kemp.demo;
+package com.kemp.demo.activity;
 
 import android.content.ComponentName;
 import android.content.Intent;

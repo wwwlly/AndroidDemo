@@ -1,4 +1,4 @@
-package com.kemp.demo;
+package com.kemp.demo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.kemp.demo.R;
 import com.kemp.demo.utils.Constants;
 import com.kemp.demo.socket.SocketService;
 import com.kemp.demo.socket.ThreadPoolManager;

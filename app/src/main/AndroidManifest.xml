@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name=".RecyclerViewDemo"
+            android:name=".activity.RecyclerViewDemo"
             android:label="RecyclerViewDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name=".ProcesserDemo"
+            android:name=".activity.ProcesserDemo"
             android:label="ProcesserDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,7 @@
         </activity>
 
         <activity
-            android:name=".DesignWidgetDemo"
+            android:name=".activity.DesignWidgetDemo"
             android:label="DesignWidgetDemo"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
@@ -52,7 +52,7 @@
         </activity>
 
         <activity
-            android:name=".DataBindingDemo"
+            android:name=".activity.DataBindingDemo"
             android:label="DataBindingDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,7 +62,7 @@
         </activity>
 
         <activity
-            android:name=".Dagger2Demo"
+            android:name=".activity.Dagger2Demo"
             android:label="Dagger2Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -72,7 +72,7 @@
         </activity>
 
         <activity
-            android:name=".CameraDemo"
+            android:name=".activity.CameraDemo"
             android:label="CameraDemo"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -83,7 +83,7 @@
         </activity>
 
         <activity
-            android:name=".MyDrawDemo"
+            android:name=".activity.MyDrawDemo"
             android:label="MyDrawDemo"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -94,7 +94,7 @@
         </activity>
 
         <activity
-            android:name=".ServiceDemo"
+            android:name=".activity.ServiceDemo"
             android:label="ServiceDemo"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -105,7 +105,7 @@
         </activity>
 
         <activity
-            android:name=".IPCDemo"
+            android:name=".activity.IPCDemo"
             android:label="IPCDemo"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -116,7 +116,7 @@
         </activity>
 
         <activity
-            android:name=".LaunchModeDemo"
+            android:name=".activity.LaunchModeDemo"
             android:label="LaunchModeDemo"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -148,7 +148,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".SocketDemo"
+            android:name=".activity.SocketDemo"
             android:label="SocketDemo"
             android:screenOrientation="portrait">
             <intent-filter>

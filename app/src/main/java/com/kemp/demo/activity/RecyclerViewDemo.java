@@ -1,4 +1,4 @@
-package com.kemp.demo;
+package com.kemp.demo.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ajguan.library.EasyRefreshLayout;
 import com.ajguan.library.LoadModel;
+import com.kemp.demo.R;
 import com.kemp.demo.adapter.MyRecyclerAdapter;
 
 import java.util.ArrayList;

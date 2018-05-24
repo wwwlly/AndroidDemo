@@ -1,4 +1,4 @@
-package com.kemp.demo;
+package com.kemp.demo.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.kemp.annotations.CustomAnnotation;
 import com.kemp.compiler.HelloWorld;
+import com.kemp.demo.R;
 
 /**
  * Created by wangkp on 2018/1/29.

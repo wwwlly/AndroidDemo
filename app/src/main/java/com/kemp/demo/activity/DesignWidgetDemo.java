@@ -1,4 +1,4 @@
-package com.kemp.demo;
+package com.kemp.demo.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.CalendarView;
 import android.widget.Toast;
+
+import com.kemp.demo.R;
 
 /**
  * Created by wangkp on 2018/1/31.

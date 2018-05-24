@@ -1,4 +1,4 @@
-package com.kemp.demo;
+package com.kemp.demo.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
