@@ -1,5 +1,6 @@
 package com.kemp.demo;
 
+import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -41,6 +42,7 @@ public class IPCDemo extends AppCompatActivity implements View.OnClickListener {
     private ServiceConnection mAIDLConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d(TAG, "onServiceConnected " + Thread.currentThread().getName());
             //连接后拿到 Binder，转换成 AIDL，在不同进程会返回个代理
             mAidl = IMyAidl.Stub.asInterface(service);
         }
@@ -100,6 +102,8 @@ public class IPCDemo extends AppCompatActivity implements View.OnClickListener {
 
         bindAIDLService();
         bindMessengerService();
+
+        ActivityManager a = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
     }
 
     @Override
