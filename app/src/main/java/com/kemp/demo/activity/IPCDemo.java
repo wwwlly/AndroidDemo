@@ -47,6 +47,7 @@ public class IPCDemo extends AppCompatActivity implements View.OnClickListener {
             Log.d(TAG, "onServiceConnected " + Thread.currentThread().getName());
             //连接后拿到 Binder，转换成 AIDL，在不同进程会返回个代理
             mAidl = IMyAidl.Stub.asInterface(service);
+            Log.d(TAG,"mAidl:" + mAidl + ",service:" + service);
         }
 
         @Override

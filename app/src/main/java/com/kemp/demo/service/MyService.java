@@ -48,6 +48,7 @@ public class MyService extends Service {
         String params = intent.getStringExtra("params");
         Log.d(TAG,"params:" + params);
         mPersons = new ArrayList<>();
+        Log.d(TAG,"mIBinder:" + mIBinder);
         return mIBinder;
     }
 
