@@ -3,8 +3,11 @@ package com.kemp.demo.activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.hardware.camera2.CameraManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -28,6 +31,7 @@ public class CameraDemo extends AppCompatActivity implements SurfaceHolder.Callb
     private SurfaceView surfaceView;
 
     private Camera camera;
+    private CameraManager manager;
 
     private boolean hasSurface;
 

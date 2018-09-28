@@ -22,7 +22,7 @@ class MainAdapter(var mContext: Context, val datas: List<MainItemData>) : Recycl
         })
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MainViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(LayoutInflater.from(mContext).inflate(android.R.layout.simple_list_item_1, parent, false))
     }
 

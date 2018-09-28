@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.media.MediaBrowserCompat.MediaItem.Flags;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -57,7 +56,7 @@ public abstract class LaunchModeActivity extends AppCompatActivity implements Vi
      * @param cls
      * @param flags Intent.FLAG_ACTIVITY_SINGLE_TOP
      */
-    public void setButton(final Class<?> cls, @Flags int flags) {
+    public void setButton(final Class<?> cls, int flags) {
         button.setText("start_" + cls.getSimpleName());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
