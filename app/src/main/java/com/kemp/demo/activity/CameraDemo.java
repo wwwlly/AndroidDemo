@@ -1,13 +1,18 @@
 package com.kemp.demo.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -27,6 +32,7 @@ import java.io.IOException;
 public class CameraDemo extends AppCompatActivity implements SurfaceHolder.Callback, Camera.PictureCallback {
 
     public static final String TAG = CameraDemo.class.getSimpleName();
+    private static final int REQUEST_PERMISSIONS = 1;
 
     private SurfaceView surfaceView;
 
@@ -107,6 +113,10 @@ public class CameraDemo extends AppCompatActivity implements SurfaceHolder.Callb
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_PERMISSIONS);
+            return;
+        }
         camera = Camera.open();
         Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         Camera.getCameraInfo(0, cameraInfo);
@@ -136,5 +146,21 @@ public class CameraDemo extends AppCompatActivity implements SurfaceHolder.Callb
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
         startResult(data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length != 0) {
+            int cameraPermission = grantResults[0];
+            if (cameraPermission == PackageManager.PERMISSION_GRANTED) {
+                initCamera(surfaceView.getHolder());
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
+                        REQUEST_PERMISSIONS);
+                finish();
+            }
+        }
     }
 }
