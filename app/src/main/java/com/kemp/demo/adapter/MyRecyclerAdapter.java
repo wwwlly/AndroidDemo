@@ -20,6 +20,8 @@ public class MyRecyclerAdapter<T> extends RecyclerView.Adapter<MyViewHolder> {
     private Context context;
     private List<T> datas;
 
+    private OnItemLongClickListener mOnItemLongClickListener;
+
     public MyRecyclerAdapter(Context context, List<T> datas) {
         this.context = context;
         this.datas = datas;
@@ -31,8 +33,18 @@ public class MyRecyclerAdapter<T> extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         holder.tv.setText(datas.get(position).toString());
+        if (mOnItemLongClickListener != null) {
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mOnItemLongClickListener.onItemLongClick(holder);
+                    //返回true 表示消耗了事件 事件不会继续传递
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -40,6 +52,13 @@ public class MyRecyclerAdapter<T> extends RecyclerView.Adapter<MyViewHolder> {
         return datas == null ? 0 : datas.size();
     }
 
+    public void setOnItemLongClickListener(OnItemLongClickListener mOnItemLongClickListener) {
+        this.mOnItemLongClickListener = mOnItemLongClickListener;
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(RecyclerView.ViewHolder vh);
+    }
 
 }
 
