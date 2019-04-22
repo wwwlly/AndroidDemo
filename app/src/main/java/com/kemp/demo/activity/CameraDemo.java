@@ -65,6 +65,7 @@ public class CameraDemo extends AppCompatActivity implements SurfaceHolder.Callb
             Log.d(TAG, "bitmap is null");
             return;
         }
+        Log.d(TAG, "bitmap w:" + bitmap.getWidth() + ", h:" + bitmap.getHeight());
         iv.setVisibility(View.VISIBLE);
         iv.setImageBitmap(bitmap);
     }
@@ -122,6 +123,8 @@ public class CameraDemo extends AppCompatActivity implements SurfaceHolder.Callb
         Camera.getCameraInfo(0, cameraInfo);
 
         Camera.Parameters parameters = camera.getParameters();
+        parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+        parameters.setRotation(270);
         parameters.setPreviewSize(1920, 1080);
         camera.setParameters(parameters);
         camera.setDisplayOrientation(90);
