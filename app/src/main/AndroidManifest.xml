@@ -193,6 +193,18 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.RefreshListDemo"
+            android:label="RefreshListDemo"
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".service.MyService"
             android:process=":ipc" />
