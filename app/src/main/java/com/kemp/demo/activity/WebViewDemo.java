@@ -5,28 +5,36 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.kemp.demo.R;
 
 public class WebViewDemo extends AppCompatActivity {
 
+    private static final String TAG = "WebViewDemo";
 
+    private long startTime = 0L;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
+        startTime = System.currentTimeMillis();
         WebView webView = findViewById(R.id.web_view);
         setWebSettings(webView);
-        webView.loadUrl("http://zhinengop.yichehuoban.cn/chexian/login");
+//        webView.loadUrl("http://zhinengop.yichehuoban.cn/chexian/login");
+//        webView.loadUrl("http://192.168.15.16:9001/h5/");
+//        webView.loadUrl("http://uniapp.dcloud.io/h5/");
+        webView.loadUrl("https://mobile.ant.design/kitchen-sink/");
         webView.setWebViewClient(new MyWebViewClient());
-        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebChromeClient(new MyWebChromeClient());
     }
 
     private void setWebSettings(WebView webView) {
@@ -54,7 +62,7 @@ public class WebViewDemo extends AppCompatActivity {
         }
     }
 
-    private class MyWebViewClient extends WebViewClient{
+    private class MyWebViewClient extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -75,7 +83,26 @@ public class WebViewDemo extends AppCompatActivity {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
+//            loadFinish();
         }
+    }
+
+    private class MyWebChromeClient extends WebChromeClient {
+
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            Log.d(TAG, "newProgress: " + newProgress);
+            if (newProgress == 100) {
+                loadFinish();
+            }
+        }
+    }
+
+    private void loadFinish(){
+        long endTime = System.currentTimeMillis();
+        double p = (endTime - startTime) / 1000d;
+        String str = String.format("启动时间：%ss", p);
+        Log.d(TAG, str);
+        Toast.makeText(WebViewDemo.this, str, Toast.LENGTH_LONG).show();
     }
 }
