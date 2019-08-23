@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.kemp.annotations.CustomAnnotation;
-import com.kemp.compiler.HelloWorld;
 import com.kemp.demo.R;
 
 /**
@@ -26,6 +25,7 @@ public class ProcesserDemo extends AppCompatActivity {
 
     @CustomAnnotation("testProcesser")
     private String testProcesser(){
-        return HelloWorld.test();
+//        return HelloWorld.test();
+        return "";
     }
 }
