@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion '29.0.2'
     defaultConfig {
         applicationId "com.kemp.demo"
         minSdkVersion 18
@@ -41,7 +42,7 @@ dependencies {
     }
     api 'com.google.dagger:dagger:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api project(':appmodule')
     implementation 'com.github.chrisbanes:PhotoView:2.1.4'
     implementation('com.davemorrissey.labs:subsampling-scale-image-view:3.10.0') {
