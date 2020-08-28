@@ -23,9 +23,15 @@ public class Test {
                 .addParameter(String[].class, "args")
                 .addStatement("$T.out.println($S)", System.class, "Hello World")
                 .build();
+        MethodSpec test = MethodSpec.methodBuilder("test")
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(String.class)
+                .addStatement("return $S", "Hello World")
+                .build();
         TypeSpec typeSpec = TypeSpec.classBuilder("HelloWorld")
                 .addModifiers(Modifier.FINAL, Modifier.PUBLIC)
                 .addMethod(main)
+                .addMethod(test)
                 .build();
         JavaFile javaFile = JavaFile.builder("com.kemp.compiler", typeSpec).build();
         try {
