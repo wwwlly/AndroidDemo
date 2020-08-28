@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.kemp.demo.dragger2.DaggerA;
 import com.kemp.demo.dragger2.DaggerB;
+import com.kemp.demo.dragger2.DaggerHeroComponent;
+import com.kemp.demo.dragger2.HeroComponent;
 
 import javax.inject.Inject;
 
@@ -36,6 +38,9 @@ public class Dagger2Demo extends AppCompatActivity {
 
         DaggerDagger2Demo_MyComponent.builder().myModule(new MyModule()).build().inject(this);
         Log.d(TAG, daggerA == null ? "daggerA is null" : "daggerA is not null");
+
+        HeroComponent component = DaggerHeroComponent.create();
+        component.getHero().printDefense();
     }
 
     @Module
