@@ -196,7 +196,6 @@
         <activity
             android:name=".activity.RefreshListDemo"
             android:label="RefreshListDemo"
-            android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -220,7 +219,6 @@
         <activity
             android:name=".activity.KeyBoardDemo"
             android:label="KeyBoardDemo"
-            android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -232,7 +230,6 @@
         <activity
             android:name=".activity.OSBuildDemo"
             android:label="OSBuildDemo"
-            android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -244,7 +241,6 @@
         <activity
             android:name=".activity.ThreadDemo"
             android:label="ThreadDemo"
-            android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
