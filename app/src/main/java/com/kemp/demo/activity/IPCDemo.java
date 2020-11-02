@@ -141,10 +141,12 @@ public class IPCDemo extends AppCompatActivity implements View.OnClickListener {
     private void addPerson() {
         Random random = new Random();
         Person person = new Person("www" + random.nextInt(10));
+        Log.d(TAG,"Person:" + person);
 
         try {
             mAidl.addPerson(person);
             List<Person> personList = mAidl.getPersonList();
+            Log.d(TAG,"added Person:" + personList.get(0));
             tvContent.setText(personList.toString());
         } catch (RemoteException e) {
             e.printStackTrace();

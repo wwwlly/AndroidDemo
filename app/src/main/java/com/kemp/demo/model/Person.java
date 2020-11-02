@@ -40,10 +40,10 @@ public class Person implements Parcelable {
         dest.writeString(mName);
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "mName='" + mName + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Person{" +
+//                "mName='" + mName + '\'' +
+//                '}';
+//    }
 }

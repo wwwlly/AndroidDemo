@@ -30,6 +30,7 @@ public class MyService extends Service {
 
         @Override
         public void addPerson(Person person) throws RemoteException {
+            Log.d(TAG,"Person:" + person);
             Log.d(TAG,"addPerson current thread:" + Thread.currentThread().getName());
             mPersons.add(person);
         }
@@ -45,6 +46,7 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG,"onBind");
+        Log.d(TAG,"current thread:" + Thread.currentThread().getName());
         String params = intent.getStringExtra("params");
         Log.d(TAG,"params:" + params);
         mPersons = new ArrayList<>();
