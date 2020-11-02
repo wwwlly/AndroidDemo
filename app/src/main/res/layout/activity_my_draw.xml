@@ -6,18 +6,23 @@
 
     <com.kemp.demo.widget.MyDrawView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="btn"/>
+        android:text="btn" />
 
     <TextView
         android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="text"
-        android:background="@color/red"/>
+        android:background="@color/red"
+        android:text="text" />
+
+    <com.kemp.demo.widget.BitmapDrawView
+        android:id="@+id/bdv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 </LinearLayout>

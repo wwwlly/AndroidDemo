@@ -11,6 +11,7 @@ import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -18,6 +19,8 @@ import android.view.View;
  */
 
 public class MyDrawView extends View {
+
+    public static final String TAG = "MyDrawView";
 
     private Path path;
     private Paint paint;
@@ -44,6 +47,7 @@ public class MyDrawView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Log.d(TAG, "onDraw");
 
         //等腰三角形
         path.moveTo(200, 100);
