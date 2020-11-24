@@ -20,6 +20,8 @@ import android.view.View;
 public class BitmapDrawView extends View {
 
     public static final String TAG = "BitmapDrawView";
+//    public static final String text = "hello如果要把一个变量从主内存传输到工作内存，那就要顺序的执行read和load操作，如果要把一个变量从工作内存回写到主内存，就要顺序的执行store和write操作。";
+    public static final String text = "hello";
     private Context mContext;
     private Bitmap mBitmap;
     private Paint bitmapPaint;
@@ -69,7 +71,7 @@ public class BitmapDrawView extends View {
         int top = 100;
         top = (int) (0 - fontMetrics.ascent);
         Log.d(TAG, "top: " + top);
-        canvas.drawText("hello", 0, top, paint);
+        canvas.drawText(text, 0, top, paint);
     }
 
 }
