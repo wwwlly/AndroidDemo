@@ -4,13 +4,26 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
 
 import com.kemp.demo.launchmode.AActivity;
 import com.kemp.demo.launchmode.LaunchModeActivity;
 
 /**
- * activity的启动方式和启动模式
+ * activity启动方式：显示启动、隐式启动
+ *
+ * activity启动模式:
+ * standard 标准模式
+ * 每次启动一个Activity都会又一次创建一个新的实例入栈，无论这个实例是否存在。
+ * singleTop 栈顶复用模式
+ * 分两种处理情况：须要创建的Activity已经处于栈顶时，此时会直接复用栈顶的Activity。不会再创建新的Activity；
+ * 若须要创建的Activity不处于栈顶，此时会又一次创建一个新的Activity入栈，同Standard模式一样。
+ * singleTask 栈内复用模式
+ * 若须要创建的Activity已经处于栈中时，此时不会创建新的Activity，而是将存在栈中的Activity上面的其他Activity所有销毁，使它成为栈顶。
+ * singleInstance 单实例模式
+ * SingleInstance比較特殊，是全局单例模式，是一种加强的SingleTask模式。它除了具有它所有特性外，还加强了一点：具有此模式的Activity仅仅能单独位于一个任务栈中。
+ * 参考：https://blog.csdn.net/elisonx/article/details/80397519
+ *
+ * activity的生命周期
  * Created by wangkp on 2018/5/9.
  */
 
@@ -20,12 +33,6 @@ public class LaunchModeDemo extends LaunchModeActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setButton(AActivity.class);
-    }
-
-    @Override
-    public void onClick(View v) {
-//        startActivityComponent();
-        startActivityImpllicit();
     }
 
     private void startActivityComponent(){
