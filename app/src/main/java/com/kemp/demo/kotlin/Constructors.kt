@@ -37,6 +37,10 @@ open class Shape(name: String) {
     constructor() : this("Shape") {
         log("Shape's constructor() init")
     }
+
+    open fun getText(): String {
+        return "www"
+    }
 }
 
 class Circle(val id: Int = 1, name: String) : Shape() {
@@ -49,5 +53,13 @@ class Circle(val id: Int = 1, name: String) : Shape() {
 
     constructor() : this(2, "Circle") {
         log("Circle's constructor(id, name) init")
+    }
+
+    override fun getText(): String {
+        return super.getText()
+    }
+
+    fun Test(){
+
     }
 }

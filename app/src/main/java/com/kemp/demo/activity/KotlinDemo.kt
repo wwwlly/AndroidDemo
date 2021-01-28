@@ -6,6 +6,8 @@ import com.kemp.demo.base.ShowTextActivity
 import com.kemp.demo.kotlin.Circle
 import com.kemp.demo.kotlin.RetrofitHelper
 import com.kemp.demo.kotlin.Shape
+import java.lang.Exception
+import kotlin.math.log
 import kotlin.properties.Delegates
 
 
@@ -24,12 +26,15 @@ class KotlinDemo : ShowTextActivity() {
         super.onCreate(savedInstanceState)
 
         setText("KotlinDemo")
+//        lifecycle
 
-        test1()
-        RetrofitHelper.test()
-        swap()
-        observe()
-        testConstructor()
+//        test1()
+//        RetrofitHelper.test()
+//        swap()
+//        observe()
+//        testConstructor()
+        test2()
+        testEquals()
     }
 
     /**
@@ -51,6 +56,12 @@ class KotlinDemo : ShowTextActivity() {
 
         appendText("result = $result")
         println("result = $result")
+
+        var fun1: (() -> Unit)? = null
+        fun1 = { Log.d(TAG, "fun1 run") }
+        fun1?.invoke()
+//        fun1()
+//        fun1
     }
 
     //<editor-fold desc="为什么使用契约">
@@ -102,6 +113,56 @@ class KotlinDemo : ShowTextActivity() {
 //        val shape = Shape("Shape")
         val shape = Circle()
 
+    }
+
+    data class A(val name: String)
+
+    /**
+     * ?.
+     * !!
+     * ?:
+     * String.toInt()
+     */
+    private fun test2() {
+//        val name: String? = "www"
+        val name: String? = null
+
+//        if (name?.isNotEmpty()){ //等价于 !!.
+//        if (name!!.isNotEmpty()){
+//            Log.d(TAG, "name is not empty")
+//        }
+
+        val a: A? = null
+        Log.d(TAG, "a's name is ${a?.name}")
+
+        val msg = name ?: "name is not null"
+        Log.d(TAG, msg)
+
+//        val str: String? = "123"
+        val str: String? = "www"
+        val temp = try {
+            str?.toInt()
+        } catch (e: Exception) {
+            Log.d(TAG, "str can't to Int")
+            0
+        } finally {
+            0
+        }
+        Log.d(TAG, "str: $temp")
+    }
+
+    /**
+     * equals()
+     * ==
+     * ===
+     */
+    private fun testEquals() {
+        val a = "aaa"
+        val b = "aaa"
+
+        Log.d(TAG, "a.equals(b)=${a.equals(b)}")
+        Log.d(TAG, "a == b =${a == b}")
+        Log.d(TAG, "a === b =${a === (b)}")
     }
 
 }
