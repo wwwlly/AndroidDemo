@@ -6,7 +6,11 @@ import com.kemp.demo.base.ShowTextActivity
 import com.kemp.demo.kotlin.Circle
 import com.kemp.demo.kotlin.RetrofitHelper
 import com.kemp.demo.kotlin.Shape
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 import java.lang.Exception
+import java.lang.Thread.sleep
 import kotlin.math.log
 import kotlin.properties.Delegates
 
@@ -33,8 +37,10 @@ class KotlinDemo : ShowTextActivity() {
 //        swap()
 //        observe()
 //        testConstructor()
-        test2()
-        testEquals()
+//        test2()
+//        testEquals()
+//        testSynchrnoized()
+        testCoroutine()
     }
 
     /**
@@ -164,5 +170,76 @@ class KotlinDemo : ShowTextActivity() {
         Log.d(TAG, "a == b =${a == b}")
         Log.d(TAG, "a === b =${a === (b)}")
     }
+
+    /**
+     * synchronized控制task1和task2执行完后才去执行task3
+     *
+     */
+    fun testSynchrnoized() {
+        val task1: () -> String = {
+            sleep(2000)
+            "Hello".also { println("task1 finished: $it") }
+        }
+
+        val task2: () -> String = {
+            sleep(2000)
+            "World".also { println("task2 finished: $it") }
+        }
+
+        val task3: (String, String) -> String = { p1, p2 ->
+            sleep(2000)
+            "$p1 $p2".also { println("task3 finished: $it") }
+        }
+
+        lateinit var s1: String
+        lateinit var s2: String
+
+        Thread {
+            synchronized(Unit) {
+                s1 = task1()
+            }
+        }.start()
+
+        s2 = task2()
+
+        //执行到这说明task2已执行完，由于匿名thread已获取Unit锁，等其释放（task1执行完）才会执行下面语句
+        synchronized(Unit) {
+            task3(s1, s2)
+        }
+
+    }
+
+    /**
+     * 协程
+     */
+    fun testCoroutine() {
+        val task1: () -> String = {
+            sleep(2000)
+            "Hello".also { println("task1 finished: $it") }
+        }
+
+        val task2: () -> String = {
+            sleep(2000)
+            "World".also { println("task2 finished: $it") }
+        }
+
+        val task3: (String, String) -> String = { p1, p2 ->
+            sleep(2000)
+            "$p1 $p2".also { println("task3 finished: $it") }
+        }
+
+        runBlocking {
+            val c1 = async(Dispatchers.IO) {
+                task1()
+            }
+
+            val c2 = async(Dispatchers.IO) {
+                task2()
+            }
+
+            task3(c1.await(), c2.await())
+        }
+    }
+
 
 }
