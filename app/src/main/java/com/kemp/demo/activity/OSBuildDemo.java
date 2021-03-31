@@ -4,9 +4,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.widget.TextView;
 
 import com.kemp.demo.R;
+import com.kemp.demo.utils.Tools;
 
 public class OSBuildDemo extends AppCompatActivity {
 
@@ -18,6 +20,8 @@ public class OSBuildDemo extends AppCompatActivity {
         TextView textView = findViewById(R.id.tv_content);
 
         textView.setText(obtainVersions());
+        textView.append("\r\n");
+        textView.append(getScreenParames());
     }
 
     private String obtainVersions() {
@@ -96,6 +100,48 @@ public class OSBuildDemo extends AppCompatActivity {
         sb.append(Build.VERSION.INCREMENTAL);
         sb.append("\r\n");
 
+        return sb.toString();
+    }
+
+    /**
+     * 获取屏幕分辨率等参数
+     * android.view.DisplayInfo.logicalDensityDpi
+     * android.view.DisplayInfo.physicalXDpi
+     * android.view.DisplayInfo.physicalYDpi
+     * @return
+     */
+    private String getScreenParames() {
+        DisplayMetrics dm = Tools.getDisplayMetrics(this);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("屏幕分辨率：");
+        sb.append(dm.heightPixels + "*" + dm.widthPixels);
+        sb.append("\r\n");
+        sb.append("屏幕密度：");//逻辑logicalDensityDpi
+        sb.append(dm.densityDpi);
+        sb.append("\r\n");
+        sb.append("密度：");//= 屏幕密度 / 160
+        sb.append(dm.density);
+        sb.append("\r\n");
+        sb.append("scale密度：");
+        sb.append(dm.scaledDensity);
+        sb.append("\r\n");
+        sb.append("xdpi：");
+        sb.append(dm.xdpi);//物理
+        sb.append("\n");
+        sb.append("ydpi：");
+        sb.append(dm.ydpi);
+        sb.append("\r\n");
+        sb.append("物理尺寸：");
+        sb.append(dm.heightPixels / dm.ydpi);
+        sb.append("*");
+        sb.append(dm.widthPixels / dm.xdpi);
+        sb.append("(英寸)");
+        sb.append("\r\n");
+        sb.append("屏幕尺寸：");
+        sb.append(Math.sqrt(dm.heightPixels / dm.ydpi * dm.heightPixels / dm.ydpi + dm.widthPixels / dm.xdpi * dm.widthPixels / dm.xdpi));
+        sb.append("(英寸)");
+        sb.append("\r\n");
         return sb.toString();
     }
 }
