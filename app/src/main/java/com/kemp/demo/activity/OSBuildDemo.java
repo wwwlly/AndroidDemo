@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
+import com.kemp.annotations.Description;
 import com.kemp.demo.R;
 import com.kemp.demo.utils.Tools;
 
+@Description("手机系统版本、设备号、厂商和屏幕分辨率等参数")
 public class OSBuildDemo extends AppCompatActivity {
 
     @Override
@@ -111,7 +113,7 @@ public class OSBuildDemo extends AppCompatActivity {
      * @return
      */
     private String getScreenParames() {
-        DisplayMetrics dm = Tools.getDisplayMetrics(this);
+        DisplayMetrics dm = Tools.getDisplayRealMetrics(this);
 
         StringBuilder sb = new StringBuilder();
         sb.append("屏幕分辨率：");

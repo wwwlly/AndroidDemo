@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.kemp.demo.R
+import com.kemp.demo.utils.gone
+import com.kemp.demo.utils.visible
 
 class MainAdapter(var mContext: Context, val datas: List<MainItemData>) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
@@ -16,22 +19,33 @@ class MainAdapter(var mContext: Context, val datas: List<MainItemData>) : Recycl
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.setText(datas.get(position).title)
-        holder.itemView.setOnClickListener({
-            onItemClickListener?.onItemClick(datas.get(position))
-        })
+        holder.setName(datas[position].title)
+        holder.setDescription(datas[position].des)
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.onItemClick(datas[position])
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(LayoutInflater.from(mContext).inflate(android.R.layout.simple_list_item_1, parent, false))
+        return MainViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_main, parent, false))
     }
 
     inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val textView: TextView = itemView.findViewById(android.R.id.text1)
+        private val tvName: TextView = itemView.findViewById(R.id.tv_name)
+        private val tvDes: TextView = itemView.findViewById(R.id.tv_des)
 
-        fun setText(text: String) {
-            textView.setText(text)
+        fun setName(text: String) {
+            tvName.text = text
+        }
+
+        fun setDescription(text: String?) {
+            if (text.isNullOrEmpty()) {
+                tvDes.gone()
+            } else {
+                tvDes.visible()
+                tvDes.text = text
+            }
         }
     }
 

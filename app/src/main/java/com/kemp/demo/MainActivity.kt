@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.kemp.demo.adapter.MainAdapter
 import com.kemp.demo.adapter.MainItemData
+import com.kemp.demo.utils.ActivityDescriptionUtil
 import java.text.Collator
 import java.util.*
 
@@ -66,12 +67,12 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickListener {
                 val nextLabel = if (prefixPath == null) labelPath[0] else labelPath[prefixPath.size]
 
                 if (prefixPath?.size ?: 0 == labelPath.size - 1) {
-                    addItem(myData, nextLabel, activityIntent(
+                    addItem(myData, nextLabel, getDescription(nextLabel), activityIntent(
                             info.activityInfo.applicationInfo.packageName,
                             info.activityInfo.name))
                 } else {
                     if (entries[nextLabel] == null) {
-                        addItem(myData, nextLabel, browseIntent(if (prefix == "") nextLabel else "$prefix/$nextLabel"))
+                        addItem(myData, nextLabel, getDescription(nextLabel), browseIntent(if (prefix == "") nextLabel else "$prefix/$nextLabel"))
                         entries[nextLabel] = true
                     }
                 }
@@ -104,8 +105,12 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickListener {
         return result
     }
 
-    private fun addItem(data: MutableList<MainItemData>, name: String, intent: Intent) {
-        val temp = MainItemData(name, intent)
+    private fun getDescription(name: String): String{
+        return ActivityDescriptionUtil.getInstance().description[name] ?: ""
+    }
+
+    private fun addItem(data: MutableList<MainItemData>, name: String, des: String?, intent: Intent) {
+        val temp = MainItemData(name, des, intent)
         data.add(temp)
     }
 

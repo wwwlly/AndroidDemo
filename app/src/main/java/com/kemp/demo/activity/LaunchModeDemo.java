@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.kemp.annotations.Description;
 import com.kemp.demo.launchmode.AActivity;
 import com.kemp.demo.launchmode.LaunchModeActivity;
 
@@ -27,6 +28,7 @@ import com.kemp.demo.launchmode.LaunchModeActivity;
  * Created by wangkp on 2018/5/9.
  */
 
+@Description("启动模式、activity的生命周期")
 public class LaunchModeDemo extends LaunchModeActivity {
 
     @Override
