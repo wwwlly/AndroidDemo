@@ -6,9 +6,7 @@ import com.kemp.demo.base.ShowTextActivity
 import com.kemp.demo.kotlin.Circle
 import com.kemp.demo.kotlin.RetrofitHelper
 import com.kemp.demo.kotlin.Shape
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import java.lang.Exception
 import java.lang.Thread.sleep
 import kotlin.math.log
@@ -229,6 +227,18 @@ class KotlinDemo : ShowTextActivity() {
         }
 
         runBlocking {
+            val c1 = async(Dispatchers.IO) {
+                task1()
+            }
+
+            val c2 = async(Dispatchers.IO) {
+                task2()
+            }
+
+            task3(c1.await(), c2.await())
+        }
+
+        GlobalScope.launch {
             val c1 = async(Dispatchers.IO) {
                 task1()
             }
