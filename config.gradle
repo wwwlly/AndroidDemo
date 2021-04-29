@@ -1,0 +1,70 @@
+/**
+ *  全局统一配置文件
+ */
+ext {
+
+    //版本号
+    versions = [
+            androidSupportSdkVersion      : "26.1.0",
+            constraintLayoutVersion       : "1.1.3",
+            annotationsVersion            : "26.1.0",
+            multidexVersion               : "1.0.3",
+
+            kotlin_version                : "1.2.71",
+            anko_version                  : "0.10.8",
+            //for 测试
+            runnerVersion                 : "1.0.2",
+            espressoVersion               : "3.0.2",
+            junitVersion                  : "4.12",
+
+            arouterApiVersion             : "1.4.1",
+            arouterCompilerVersion        : "1.2.2",
+
+            eventbusVersion               : "3.0.0",
+
+            rxjavaVersion                 : "2.1.8",
+            rxandroidVersion              : "2.0.1",
+            retrofit2Version              : "2.4.0",
+            rxbindingVersion              : "2.0.0",
+
+            stethoVersion                 : "1.3.1",
+            iresearchVersion              : "2.1.2.11",
+            lottieVersion                 : "2.2.0",
+            convenientbannerVersion       : "2.0.5",
+            DanmakuFlameMasterVersion     : "0.8.3",
+            keyboardvisibilityeventVersion: "2.1.0",
+            glideVersion                  : "4.3.1",
+            glidetransformationsVersion   : "3.0.1",
+            butterknifeVersion            : "8.8.1",
+
+            advancedlubanVersion          : "1.3.5",
+            autotrackingVersion           : "1.1.7",
+            zxingVersion                  : "3.3.0",
+
+            weex_sdkVersion               : "0.17.0",
+            weex_inspectorVersion         : "0.13.2",
+            BaseRecyclerViewVersion       : "2.9.46",
+
+            SmartRefreshLayoutVersion     : "1.0.5.1",
+            BasePopupVersion              : "1.9.4",
+            dialogplusVersion             : "1.11",
+            rxpermissions2Version         : "0.9.3",
+            ucropVersion                  : "2.2.2",
+            MagicIndicatorVersion         : "1.5.0",
+            elita_aiVersion               : "2.0.0",
+            MPAndroidChartVersion         : "v3.0.3",
+            mmkvVersion                   : "1.0.13",
+            BackgroudLibraryVersion       : "1.4.8",
+
+            okhttp                        : "5.0.0-alpha.2",
+
+
+    ]
+
+    dependencies = [
+            "appcompat_v7"                 : "com.android.support:appcompat-v7:${versions["androidSupportSdkVersion"]}",
+            "constraint_layout"            : "com.android.support.constraint:constraint-layout:${versions["constraintLayoutVersion"]}",
+            "okhttp"                       : "com.squareup.okhttp3:okhttp:${versions["okhttp"]}"
+    ]
+
+}

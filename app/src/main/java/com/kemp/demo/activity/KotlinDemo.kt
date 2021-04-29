@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import com.kemp.demo.base.ShowTextActivity
 import com.kemp.demo.kotlin.Circle
-import com.kemp.demo.kotlin.RetrofitHelper
-import com.kemp.demo.kotlin.Shape
+import com.kemp.demo.utils.DebugLog
+import com.kemp.demo.utils.ProxyTest
 import kotlinx.coroutines.*
 import java.lang.Exception
 import java.lang.Thread.sleep
-import kotlin.math.log
 import kotlin.properties.Delegates
 
 
@@ -38,7 +37,8 @@ class KotlinDemo : ShowTextActivity() {
 //        test2()
 //        testEquals()
 //        testSynchrnoized()
-        testCoroutine()
+//        testCoroutine()
+//        testProxy()
     }
 
     /**
@@ -210,33 +210,33 @@ class KotlinDemo : ShowTextActivity() {
     /**
      * 协程
      */
-    fun testCoroutine() {
+    private fun testCoroutine() {
         val task1: () -> String = {
             sleep(2000)
-            "Hello".also { println("task1 finished: $it") }
+            "Hello".also { DebugLog.d("task1 finished: $it") }
         }
 
         val task2: () -> String = {
             sleep(2000)
-            "World".also { println("task2 finished: $it") }
+            "World".also { DebugLog.d("task2 finished: $it") }
         }
 
         val task3: (String, String) -> String = { p1, p2 ->
-            sleep(2000)
-            "$p1 $p2".also { println("task3 finished: $it") }
+//            sleep(2000)
+            "$p1 $p2".also { DebugLog.d("task3 finished: $it") }
         }
 
-        runBlocking {
-            val c1 = async(Dispatchers.IO) {
-                task1()
-            }
-
-            val c2 = async(Dispatchers.IO) {
-                task2()
-            }
-
-            task3(c1.await(), c2.await())
-        }
+//        runBlocking {
+//            val c1 = async(Dispatchers.IO) {
+//                task1()
+//            }
+//
+//            val c2 = async(Dispatchers.IO) {
+//                task2()
+//            }
+//
+//            task3(c1.await(), c2.await())
+//        }
 
         GlobalScope.launch {
             val c1 = async(Dispatchers.IO) {
@@ -251,5 +251,15 @@ class KotlinDemo : ShowTextActivity() {
         }
     }
 
+    /**
+     * 防止被抓包
+     */
+    private fun testProxy() {
+        val proxyTest = ProxyTest(this)
+
+//        proxyTest.testIsWifiProxy()
+//        proxyTest.testRequestHttpURLConnection()
+        proxyTest.testRequestOkHttp()
+    }
 
 }
