@@ -14,6 +14,8 @@ import java.util.Random;
 
 /**
  * Created by lmt on 16/11/1.
+ *
+ * 参考https://github.com/AndroidMsky/RandomTextView
  */
 
 @SuppressLint("AppCompatCustomView")
