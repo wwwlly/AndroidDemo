@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.kemp.demo.widget.RandomTextView
+            android:id="@+id/rtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:padding="0px"
+            android:text="123456"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/btnRandomTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RandomTextView"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
