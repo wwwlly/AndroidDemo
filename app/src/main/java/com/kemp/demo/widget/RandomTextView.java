@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by lmt on 16/11/1.
@@ -23,6 +24,8 @@ public class RandomTextView extends TextView {
     public static final int LOW_FIRST = 1;
     //速度相同
     public static final int ALL = 2;
+    //速度随机
+    public static final int RANDOM = 3;
     //用户自定义速度
     public static final int USER = 3;
     //   滚动总行数 可设置
@@ -95,6 +98,11 @@ public class RandomTextView extends TextView {
             case ALL:
                 for (int i = 0; i < text.length(); i++) {
                     speedList[i] = 15;
+                }
+            case RANDOM:
+                Random random = new Random(10);
+                for (int i = 0; i < text.length(); i++) {
+                    speedList[i] = 15 + random.nextInt(text.length());
                 }
 
                 break;

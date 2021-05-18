@@ -21,7 +21,7 @@ class CustomViewDemo: BaseActivity() {
 
     private fun testRandomTextView(){
         rtv.text = "87*6,5.43"
-        rtv.setSpeeds(RandomTextView.HIGH_FIRST)
+        rtv.setSpeeds(RandomTextView.RANDOM)
 //        rtv.setSpeeds(arrayOf(7,6))
         rtv.start()
     }
