@@ -253,6 +253,11 @@ public class RandomTextView extends TextView {
         else return;
     }
 
+    /**
+     * 非数字字符保持不动
+     * @param j
+     * @return
+     */
     private int getDrawX(int j) {
         int x = 0;
         for(int i = 0; i < numLength; i++){
