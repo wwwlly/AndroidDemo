@@ -9,12 +9,14 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.kemp.demo.utils.DebugLog;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by lmt on 16/11/1.
- *
+ * <p>
  * 参考https://github.com/AndroidMsky/RandomTextView
  */
 
@@ -122,7 +124,6 @@ public class RandomTextView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d("RandomTextView", "draw");
         if (firstIn) {
             firstIn = false;
             super.onDraw(canvas);
@@ -133,6 +134,7 @@ public class RandomTextView extends TextView {
             float[] widths = new float[4];
             mPaint.getTextWidths("9999", widths);
             fontWidth = widths[0];
+            Log.d("RandomTextView", "fontWidth：" + fontWidth);
             invalidate();
         }
         drawNumber(canvas);
@@ -206,6 +208,7 @@ public class RandomTextView extends TextView {
         arrayListText = getList(text);
         animating = true;
         startAnimatorLoop();
+        DebugLog.d("measure width : " + measureWidth() + " , " + getMeasuredWidth());
     }
 
     public void setMaxLine(int l) {
@@ -265,18 +268,32 @@ public class RandomTextView extends TextView {
 
     /**
      * 非数字字符保持不动
+     *
      * @param j
      * @return
      */
     private int getDrawX(int j) {
         int x = 0;
-        for(int i = 0; i < numLength; i++){
-            if (i > j - 1){
-                continue;
-            }
-            if (isNum(arrayListText.get(i))){
+        for (int i = 0; i < j; i++) {
+            x += mPaint.measureText(arrayListText.get(i).toString());
+//            if (isNum(arrayListText.get(i))) {
+//                x += fontWidth;
+//            } else {
+//                float w = mPaint.measureText(arrayListText.get(i).toString());
+//                x += w;
+//            }
+        }
+        return x;
+    }
+
+    private int measureWidth() {
+        int x = 0;
+        if (arrayListText == null || arrayListText.isEmpty())
+            return 0;
+        for (int i = 0; i < arrayListText.size(); i++) {
+            if (isNum(arrayListText.get(i))) {
                 x += fontWidth;
-            }else{
+            } else {
                 x += mPaint.measureText(arrayListText.get(i).toString());
             }
         }
@@ -293,4 +310,30 @@ public class RandomTextView extends TextView {
         destroy();
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        int width;
+        int height;
+
+        if (widthMode == MeasureSpec.EXACTLY) {
+            width = widthSize;
+        } else {
+            width = getMeasuredWidth() + 10;
+        }
+
+        if (heightMode == MeasureSpec.EXACTLY) {
+            height = heightSize;
+        } else {
+
+            height = getMeasuredHeight();
+        }
+
+        setMeasuredDimension(width, height);
+    }
 }
