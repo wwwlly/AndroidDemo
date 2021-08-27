@@ -18,6 +18,8 @@ object TestTime {
     /**
      * 获取明天凌晨的时间戳 28800000 中国东八区+8个小时
      *
+     * https://blog.csdn.net/zym_1321/article/details/100024739
+     *
      * dateTime-(dateTime + TimeZone.getDefault().getRawOffset())%(1000*3600*24)
      */
     private fun getTomorrow0(dateTime: Long) = dateTime - (dateTime + 28800000) % 86400000 + 86400000
