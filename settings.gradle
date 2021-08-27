@@ -1,2 +1,2 @@
 println "setting start"
-include ':app', ':compiler', ':annotations', ':appmodule'
+include ':app', ':compiler', ':annotations', ':appmodule', ':commonlib'
