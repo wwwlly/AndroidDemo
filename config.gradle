@@ -67,11 +67,15 @@ ext {
             //网络
             "okhttp"           : "com.squareup.okhttp3:okhttp:${versions["okhttp"]}",
             "retrofit2"        : "com.squareup.retrofit2:retrofit:${versions["retrofit2Version"]}",
-            "converter-gson"   : "com.squareup.retrofit2:converter-gson:2.9.0",
+            "converter-gson"   : "com.squareup.retrofit2:converter-gson:${versions["retrofit2Version"]}",
+            "adapter_rxjava2"  : "com.squareup.retrofit2:adapter-rxjava2:${versions["retrofit2Version"]}",
             //MMKV
             "mmkv"             : "com.tencent:mmkv:${versions["mmkvVersion"]}",
             //json
-            "gson"             : "com.google.code.gson:gson:2.8.7"
+            "gson"             : "com.google.code.gson:gson:2.8.7",
+            //RX
+            "rxandroid"        : "io.reactivex.rxjava2:rxandroid:${versions["rxandroidVersion"]}",
+            "rxjava"           : "io.reactivex.rxjava2:rxjava:${versions["rxjavaVersion"]}"
     ]
 
 }
