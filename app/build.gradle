@@ -51,6 +51,7 @@ dependencies {
 //    annotationProcessor project(':compiler')
     kapt project(':compiler')
     implementation project(':annotations')
+    implementation project(':commonlib')
 
 //    implementation "com.android.support:appcompat-v7:$rootProject.supportVersion"
 //    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
