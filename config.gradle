@@ -62,22 +62,28 @@ ext {
     ]
 
     dependencies = [
-            "appcompat_v7"        : "com.android.support:appcompat-v7:${versions["androidSupportSdkVersion"]}",
-            "constraint_layout"   : "com.android.support.constraint:constraint-layout:${versions["constraintLayoutVersion"]}",
+            "appcompat_v7"         : "com.android.support:appcompat-v7:${versions["androidSupportSdkVersion"]}",
+            "constraint_layout"    : "com.android.support.constraint:constraint-layout:${versions["constraintLayoutVersion"]}",
             //网络
-            "okhttp"              : "com.squareup.okhttp3:okhttp:${versions["okhttp"]}",
-            "retrofit2"           : "com.squareup.retrofit2:retrofit:${versions["retrofit2Version"]}",
-            "converter-gson"      : "com.squareup.retrofit2:converter-gson:${versions["retrofit2Version"]}",
-            "adapter_rxjava2"     : "com.squareup.retrofit2:adapter-rxjava2:${versions["retrofit2Version"]}",
+            "okhttp"               : "com.squareup.okhttp3:okhttp:${versions["okhttp"]}",
+            "retrofit2"            : "com.squareup.retrofit2:retrofit:${versions["retrofit2Version"]}",
+            "converter-gson"       : "com.squareup.retrofit2:converter-gson:${versions["retrofit2Version"]}",
+            "adapter_rxjava2"      : "com.squareup.retrofit2:adapter-rxjava2:${versions["retrofit2Version"]}",
             //MMKV
-            "mmkv"                : "com.tencent:mmkv:${versions["mmkvVersion"]}",
+            "mmkv"                 : "com.tencent:mmkv:${versions["mmkvVersion"]}",
             //json
-            "gson"                : "com.google.code.gson:gson:2.8.7",
+            "gson"                 : "com.google.code.gson:gson:2.8.7",
             //RX
-            "rxandroid"           : "io.reactivex.rxjava2:rxandroid:${versions["rxandroidVersion"]}",
-            "rxjava"              : "io.reactivex.rxjava2:rxjava:${versions["rxjavaVersion"]}",
+            "rxandroid"            : "io.reactivex.rxjava2:rxandroid:${versions["rxandroidVersion"]}",
+            "rxjava"               : "io.reactivex.rxjava2:rxjava:${versions["rxjavaVersion"]}",
             //lifecycle
-            "lifecycle_extensions": "android.arch.lifecycle:extensions:1.1.1"
+            "lifecycle_extensions" : "android.arch.lifecycle:extensions:1.1.1",
+            //anko
+            "anko_api"             : "org.jetbrains.anko:anko:${versions["anko_version"]}",
+            //glide
+            "glide"                : "com.github.bumptech.glide:glide:${versions["glideVersion"]}",
+            "glide_compiler"       : "com.github.bumptech.glide:compiler:${versions["glideVersion"]}",
+            "glide_transformations": "jp.wasabeef:glide-transformations:${versions["glidetransformationsVersion"]}",
     ]
 
 }

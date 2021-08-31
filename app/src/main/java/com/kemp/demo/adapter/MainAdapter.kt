@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.kemp.commonlib.tools.gone
+import com.kemp.commonlib.tools.visible
 import com.kemp.demo.R
-import com.kemp.demo.utils.gone
-import com.kemp.demo.utils.visible
 
 class MainAdapter(var mContext: Context, val datas: List<MainItemData>) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
