@@ -2,6 +2,8 @@ package com.kemp.commonlib.piece
 
 import android.support.v4.util.LruCache
 import com.google.gson.annotations.SerializedName
+import com.google.gson.internal.`$Gson$Types`
+import com.google.gson.reflect.TypeToken
 import com.kemp.commonlib.json.SafeGsonBuilder
 import com.tencent.mmkv.MMKV
 
@@ -30,6 +32,25 @@ object Piece {
         instance = gson.fromJson(value, clazz)
         if (instance != null) {
             cache.put(clazz, instance)
+        }
+        return instance
+    }
+
+    @JvmStatic
+    inline fun <reified T> getCollection(): T? {
+        val type = object : TypeToken<T>() {}
+        val key = if (Collection::class.java.isAssignableFrom(type.rawType)) {
+            TypeToken.get(`$Gson$Types`.getCollectionElementType(type.type, type.rawType)).rawType
+        } else {
+            T::class.java
+        }
+        var instance = cache[key]
+        if (instance != null && key.isInstance(instance)) {
+            return instance as? T
+        }
+        instance = gson.fromJson<T>(getAsString(key), type.type)
+        if (instance != null) {
+            cache.put(key, instance)
         }
         return instance
     }

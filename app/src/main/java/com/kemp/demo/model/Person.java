@@ -3,10 +3,13 @@ package com.kemp.demo.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.kemp.commonlib.piece.PieceName;
+
 /**
  * Created by wangkp on 2018/5/8.
  */
 
+@PieceName(name = "person_list")
 public class Person implements Parcelable {
     private String mName;
 
@@ -46,4 +49,12 @@ public class Person implements Parcelable {
 //                "mName='" + mName + '\'' +
 //                '}';
 //    }
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "mName='" + mName + '\'' +
+                '}';
+    }
 }
