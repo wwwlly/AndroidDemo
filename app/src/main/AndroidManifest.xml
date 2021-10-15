@@ -4,6 +4,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -217,8 +218,8 @@
         <activity
             android:name=".activity.WebViewDemo"
             android:label="WebViewDemo"
-            android:theme="@style/Theme.Design.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -314,6 +315,11 @@
         <service
             android:name=".service.MessengerService"
             android:process=":messenger" />
+
+        <provider
+            android:name=".provider.MyProvider"
+            android:authorities="${applicationId}.authMyProvider"
+            android:exported="false" />
     </application>
 
 </manifest>
