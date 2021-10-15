@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,15 +34,30 @@
             android:id="@+id/calendar_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:firstDayOfWeek="2"
+            android:focusedMonthDateColor="@color/red"
+            android:maxDate="05/15/2018"
+            android:minDate="05/02/2018"
+            android:selectedWeekBackgroundColor="@color/red"
             android:showWeekNumber="true"
             android:shownWeekCount="6"
-            android:firstDayOfWeek="2"
-            android:minDate="05/02/2018"
-            android:maxDate="05/15/2018"
-            android:focusedMonthDateColor="@color/red"
             android:unfocusedMonthDateColor="@color/black"
             android:weekNumberColor="@color/red"
-            android:weekSeparatorLineColor="@color/red"
-            android:selectedWeekBackgroundColor="@color/red"/>
+            android:weekSeparatorLineColor="@color/red" />
+
+        <Button
+            android:id="@+id/btnConsole"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_marginTop="12.5dp"
+            android:padding="0dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:bl_corners_radius="10dp"
+            app:bl_gradient_angle="45"
+            app:bl_gradient_endColor="#00E0D3"
+            app:bl_gradient_startColor="#0093C3"
+            app:bl_gradient_type="linear" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
