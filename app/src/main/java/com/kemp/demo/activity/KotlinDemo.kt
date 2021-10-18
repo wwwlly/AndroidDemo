@@ -2,11 +2,15 @@ package com.kemp.demo.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import com.kemp.demo.base.ShowTextActivity
 import com.kemp.demo.kotlin.Circle
 import com.kemp.demo.utils.DebugLog
 import com.kemp.demo.utils.ProxyTest
 import kotlinx.coroutines.*
+import org.jetbrains.anko.button
+import org.jetbrains.anko.editText
+import org.jetbrains.anko.verticalLayout
 import java.lang.Exception
 import java.lang.Thread.sleep
 import kotlin.properties.Delegates
@@ -39,6 +43,13 @@ class KotlinDemo : ShowTextActivity() {
 //        testSynchrnoized()
 //        testCoroutine()
 //        testProxy()
+
+        verticalLayout {
+            val et = editText()
+            button("aaa"){
+
+            }
+        }
     }
 
     /**
