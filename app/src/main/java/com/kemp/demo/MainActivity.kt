@@ -109,12 +109,8 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickListener {
         return result
     }
 
-    private fun getLabel(name: String): String {
-        return ActivityDescriptionUtil.getInstance().label[name] ?: name
-    }
-
     private fun getDescription(name: String): String {
-        return ActivityDescriptionUtil.getInstance().description[name] ?: name
+        return ActivityDescriptionUtil.getInstance().description[name] ?: ""
     }
 
     private fun addItem(data: MutableList<MainItemData>, name: String, des: String?, intent: Intent) {

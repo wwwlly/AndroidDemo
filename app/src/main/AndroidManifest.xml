@@ -304,7 +304,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.SensorScreenDemo" />
+        <activity
+            android:name=".activity.SensorScreenDemo"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="nosensor" />
 
         <service
             android:name=".service.MyService"
