@@ -10,12 +10,13 @@ import android.view.MenuItem;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
+import com.kemp.annotations.Description;
 import com.kemp.demo.R;
 
 /**
  * Created by wangkp on 2018/1/31.
  */
-
+@Description("Material design控件、BackgroundLibrary使用")
 public class DesignWidgetDemo extends AppCompatActivity {
 
     private final String TAG = this.getClass().getSimpleName();

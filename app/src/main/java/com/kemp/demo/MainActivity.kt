@@ -79,6 +79,10 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickListener {
             }
         }
 
+        for (i in ActivityDescriptionUtil.getInstance().label) {
+            addItem(myData, i.value, getDescription(i.key), activityIntent(packageName, "${packageName}.activity.${i.key}"))
+        }
+
         Collections.sort(myData, sDisplayNameComparator)
 
         return myData
@@ -105,8 +109,12 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnItemClickListener {
         return result
     }
 
-    private fun getDescription(name: String): String{
-        return ActivityDescriptionUtil.getInstance().description[name] ?: ""
+    private fun getLabel(name: String): String {
+        return ActivityDescriptionUtil.getInstance().label[name] ?: name
+    }
+
+    private fun getDescription(name: String): String {
+        return ActivityDescriptionUtil.getInstance().description[name] ?: name
     }
 
     private fun addItem(data: MutableList<MainItemData>, name: String, des: String?, intent: Intent) {

@@ -304,6 +304,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.SensorScreenDemo" />
+
         <service
             android:name=".service.MyService"
             android:process=":ipc" />

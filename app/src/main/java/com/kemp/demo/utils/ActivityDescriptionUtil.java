@@ -9,24 +9,33 @@ public class ActivityDescriptionUtil {
 
     private static ActivityDescriptionUtil instance;
 
-    private ActivityDescriptionUtil(){
+    private ActivityDescriptionUtil() {
 
     }
 
-    public static ActivityDescriptionUtil getInstance(){
-        if (instance == null){
+    public static ActivityDescriptionUtil getInstance() {
+        if (instance == null) {
             instance = new ActivityDescriptionUtil();
         }
         return instance;
     }
 
-    private WeakReference<HashMap<String, String>> map;
+    private WeakReference<HashMap<String, String>> desMap;
+    private WeakReference<HashMap<String, String>> labelMap;
 
-    public HashMap<String, String> getDescription(){
-        if (map == null || map.get() == null){
-            HashMap<String, String> m = DescriptionCollector.init();
-            map = new WeakReference<>(m);
+    public HashMap<String, String> getDescription() {
+        if (desMap == null || desMap.get() == null) {
+            HashMap<String, String> m = DescriptionCollector.initDescriptions();
+            desMap = new WeakReference<>(m);
         }
-        return map.get();
+        return desMap.get();
+    }
+
+    public HashMap<String, String> getLabel() {
+        if (labelMap == null || labelMap.get() == null) {
+            HashMap<String, String> m = DescriptionCollector.initLabels();
+            labelMap = new WeakReference<>(m);
+        }
+        return labelMap.get();
     }
 }
