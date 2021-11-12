@@ -307,7 +307,7 @@
         <activity
             android:name=".activity.SensorScreenDemo"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="nosensor" />
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".service.MyService"
