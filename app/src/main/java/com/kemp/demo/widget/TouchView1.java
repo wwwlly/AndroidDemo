@@ -86,7 +86,7 @@ public class TouchView1 extends ViewGroup {
 //        mLastInterX = x;
 //        mLastInterY = y;
 //        return intercept;
-        return true;
+        return super.onInterceptTouchEvent(ev);
     }
 
     @Override

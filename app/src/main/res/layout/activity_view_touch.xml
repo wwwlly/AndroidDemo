@@ -7,5 +7,17 @@
         android:id="@+id/touch_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/red"/>
+        android:background="@color/red">
+
+        <com.kemp.demo.widget.TouchView2
+            android:id="@+id/touch_view2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ssssssssssssssssssssssssssssssssss" />
+        </com.kemp.demo.widget.TouchView2>
+    </com.kemp.demo.widget.TouchView1>
 </com.kemp.demo.widget.TouchView1>
