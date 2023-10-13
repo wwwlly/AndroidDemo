@@ -172,8 +172,8 @@
         </activity>
 
         <activity
-            android:name=".activity.ViewTouchDemo"
-            android:label="ViewTouchDemo"
+            android:name=".activity.ViewEventDemo"
+            android:label="ViewEventDemo"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -181,6 +181,14 @@
                 <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.ViewTouchDemo"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ViewTouchDemo2"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.BitmapDemo"
