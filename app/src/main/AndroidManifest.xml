@@ -313,6 +313,17 @@
         </activity>
 
         <activity
+            android:name=".activity.ProviderDemo"
+            android:label="ProviderDemo"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".activity.SensorScreenDemo"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
@@ -332,6 +343,11 @@
         <provider
             android:name=".provider.MyProvider"
             android:authorities="${applicationId}.authMyProvider"
+            android:exported="false" />
+
+        <provider
+            android:name=".provider.MyFileProvider"
+            android:authorities="${applicationId}.authMyFileProvider"
             android:exported="false" />
     </application>
 
