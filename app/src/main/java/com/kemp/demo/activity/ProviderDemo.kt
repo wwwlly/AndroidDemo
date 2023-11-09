@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.kemp.demo.R
+import com.kemp.demo.utils.DebugLog
 
 class ProviderDemo : AppCompatActivity() {
 
@@ -16,11 +17,7 @@ class ProviderDemo : AppCompatActivity() {
 
     }
 
-    fun clickTestProvider(view: View) {
-        testInsert()
-    }
-
-    private fun testInsert() {
+    fun testInsert(view: View) {
         val uri = Uri.parse("content://com.kemp.demo.authMyFileProvider/tablename")
 
         val contentValue = ContentValues().apply {
@@ -28,5 +25,12 @@ class ProviderDemo : AppCompatActivity() {
             put("age", 22)
         }
         contentResolver.insert(uri, contentValue)
+    }
+
+    fun testGetType(view: View) {
+        val uri = Uri.parse("content://com.kemp.demo.authMyFileProvider/tablename")
+
+        val type = contentResolver.getType(uri)
+        DebugLog.d("type: $type")
     }
 }

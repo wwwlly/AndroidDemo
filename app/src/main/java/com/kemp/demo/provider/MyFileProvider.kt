@@ -33,10 +33,13 @@ class MyFileProvider : ContentProvider() {
         return null
     }
 
+    /**
+     * apk, jpeg
+     */
     override fun getType(uri: Uri): String? {
         DebugLog.d("getType")
         val mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension("apk")
-        return if (mime?.isEmpty() != false) mime else "application/octet-stream"
+        return if (mime?.isEmpty() == null || mime.isEmpty()) "application/octet-stream" else mime
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
