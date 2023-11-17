@@ -7,8 +7,11 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -324,9 +327,22 @@
         </activity>
 
         <activity
+            android:name=".activity.DemoListActivity"
+            android:label="DemoList"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.kemp.demo.MAIN_ACTIVITY" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".activity.SensorScreenDemo"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.BootSelfActivity" />
 
         <service
             android:name=".service.MyService"
@@ -349,6 +365,17 @@
             android:name=".provider.MyFileProvider"
             android:authorities="${applicationId}.authMyFileProvider"
             android:exported="false" />
+
+        <receiver
+            android:name=".receiver.MyBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="10000">
+                <action android:name="com.kemp.demo.MY_BROADCAST" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
