@@ -8,6 +8,7 @@ import android.view.View
 import com.kemp.commonlib.util.SPUtils
 import com.kemp.demo.R
 import com.kemp.demo.receiver.MyBroadcastReceiver
+import com.kemp.demo.utils.Tools
 import kotlinx.android.synthetic.main.activity_demo_list.*
 
 class DemoListActivity : AppCompatActivity() {
@@ -19,6 +20,10 @@ class DemoListActivity : AppCompatActivity() {
         tv_content.text = SPUtils.getString(MyBroadcastReceiver.KEY_ACTION).let {
             if (it.isEmpty()) "" else it
         }
+        tv_content.append("\n")
+        tv_content.append("packageName: ${packageName} \n")
+        tv_content.append("processName: ${Tools.getProcessName()} \n")
+
     }
 
     fun startBootActivity(view: View?) {

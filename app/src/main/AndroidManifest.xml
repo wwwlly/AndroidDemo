@@ -342,7 +342,8 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".activity.BootSelfActivity" />
+        <activity android:name=".activity.BootSelfActivity"
+            android:process=":test"/>
 
         <service
             android:name=".service.MyService"
