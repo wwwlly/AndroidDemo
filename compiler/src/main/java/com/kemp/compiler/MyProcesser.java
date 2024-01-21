@@ -34,6 +34,7 @@ public final class MyProcesser extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+        System.out.println("test process " + roundEnvironment.processingOver());
 
         for (Element element :roundEnvironment.getElementsAnnotatedWith(CustomAnnotation.class)) {
             String str = element.getAnnotation(CustomAnnotation.class).value();
