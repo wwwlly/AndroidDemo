@@ -1,4 +1,8 @@
 package com.kemp.demo.extension;
 
-public class Extension {
+public interface Extension {
+
+    void onInitialized();
+
+    void onFinalized();
 }

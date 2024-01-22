@@ -7,6 +7,7 @@ import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -43,8 +44,6 @@ import javax.lang.model.util.Types;
 @AutoService(Processor.class)
 public class ExtensionOptProcessor extends AbstractProcessor {
 
-//    public static final String EXTENSION_CLAZZ = "com.alibaba.ariver.kernel.api.extension.Extension";
-//    public static final String BRIDGE_EXTENSION_CLAZZ = "com.alibaba.ariver.kernel.api.extension.bridge.BridgeExtension";
     public static final String EXTENSION_CLAZZ = "com.kemp.demo.extension.Extension";
     public static final String BRIDGE_EXTENSION_CLAZZ = "com.kemp.demo.extension.BridgeExtension";
     public static final String FILTER_CLASS = "com.kemp.annotations.ActionFilter";
@@ -133,7 +132,7 @@ public class ExtensionOptProcessor extends AbstractProcessor {
                             mFinalClassName = "TestOpt";
                         }
                         optExtension(mOpt1Method, pointIntf, false);
-                        //optProxy(pointIntf);
+                        optProxy(pointIntf);
                     } else if (mTypeUtils.isAssignable(pointIntf.asType(), mBridgeExtensionType)) {
                         if (mFinalClassName == null) {
                             mFinalClassName = "TestOpt";
@@ -271,6 +270,104 @@ public class ExtensionOptProcessor extends AbstractProcessor {
                     .addMethod(optMethod.build())
                     .build());
 
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+    private void optProxy(Element pointIntf) {
+        try {
+            mOpt3Method.beginControlFlow("try");
+            PackageElement packageElement = mElementUtils.getPackageOf(pointIntf);
+            System.out.println("optNormalExtension element: " + pointIntf + " type: " + pointIntf.getKind() + " package: " + packageElement);
+            Map<Element, String> methodVariableMap = new HashMap<>();
+            ClassName methodClazzName = ClassName.get(Method.class);
+            int count = 0;
+            for (Element e : pointIntf.getEnclosedElements()) {
+                if (e.getKind() == ElementKind.METHOD) {
+                    String varName = pointIntf.getSimpleName() + "_" + e.getSimpleName() + "_" + count;
+                    StringBuilder stmtBuilder = new StringBuilder("final $T " + varName + " = $T.class.getDeclaredMethod(\""
+                            + e.getSimpleName() + "\"");
+                    ExecutableElement executableElement = asExecutable(e);
+                    List<? extends VariableElement> params = executableElement.getParameters();
+                    int size = params.size();
+                    Object[] args = new Object[size + 2];
+                    args[0] = methodClazzName;
+                    args[1] = pointIntf.asType();
+                    if (size > 0) {
+                        for (int i = 0; i < size; i++) {
+                            stmtBuilder.append(", $T.class");
+                            args[i + 2] = mTypeUtils.erasure(params.get(i).asType());
+                        }
+                    }
+                    stmtBuilder.append(")");
+                    mOpt3Method.addStatement(stmtBuilder.toString(), args);
+                    count++;
+                    methodVariableMap.put(e, varName);
+                }
+            }
+            MethodSpec.Builder optMethod = MethodSpec.methodBuilder("createProxyInstance")
+                    .addAnnotation(Override.class)
+                    .addModifiers(Modifier.PUBLIC)
+                    .addParameter(InvocationHandler.class, "invocationHandler", Modifier.FINAL)
+                    .returns(Object.class);
+            TypeSpec.Builder newIntfImpl = TypeSpec.anonymousClassBuilder("")
+                    .addSuperinterface(pointIntf.asType());
+            for (Element e : pointIntf.getEnclosedElements()) {
+                if (e.getKind() == ElementKind.METHOD) {
+                    ExecutableElement executableElement = asExecutable(e);
+                    String varName = methodVariableMap.get(e);
+                    List<? extends VariableElement> params = executableElement.getParameters();
+                    int size = params.size();
+                    StringBuilder callBuilder = new StringBuilder();
+                    if (executableElement.getReturnType() != null && executableElement.getReturnType().getKind() != TypeKind.VOID) {
+                        callBuilder.append("return ($T)");
+                    }
+                    callBuilder.append("invocationHandler.invoke(this, ").append(varName).append(", new $T[]{");
+                    if (size > 0) {
+                        for (int i = 0; i < size; i++) {
+                            if (i > 0) {
+                                callBuilder.append(",");
+                            }
+                            callBuilder.append(params.get(i).getSimpleName());
+                        }
+                    }
+                    callBuilder.append("})");
+                    MethodSpec.Builder innerMethod = MethodSpec.overriding(executableElement);
+                    if (executableElement.getReturnType() != null && executableElement.getReturnType().getKind() != TypeKind.VOID) {
+                        innerMethod.addStatement("try { " + callBuilder.toString() + "; } catch ($T t) { $T.reportException(t); }",
+                                executableElement.getReturnType(),
+                                ClassName.get("java.lang", "Object"),
+                                ClassName.get("java.lang", "Throwable"),
+                                mExtensionPointClz);
+                    } else {
+                        innerMethod.addStatement("try { " + callBuilder.toString() + "; } catch ($T t) { $T.reportException(t); }",
+                                ClassName.get("java.lang", "Object"),
+                                ClassName.get("java.lang", "Throwable"),
+                                mExtensionPointClz);
+                    }
+                    if (executableElement.getReturnType() != null && executableElement.getReturnType().getKind() != TypeKind.VOID) {
+                        innerMethod.addStatement("return " + TypeMirrorUtils.getDefaultValue(executableElement.getReturnType()));
+                    }
+                    newIntfImpl.addMethod(innerMethod.build());
+                }
+            }
+            newIntfImpl.addMethod(MethodSpec.methodBuilder("onInitialized")
+                    .addModifiers(Modifier.PUBLIC)
+                    .addAnnotation(Override.class).build());
+            newIntfImpl.addMethod(MethodSpec.methodBuilder("onFinalized")
+                    .addModifiers(Modifier.PUBLIC)
+                    .addAnnotation(Override.class).build());
+            optMethod.addStatement("return $L", newIntfImpl.build());
+            TypeSpec proxyGeneratorImpl = TypeSpec.anonymousClassBuilder("")
+                    .addSuperinterface(mProxyGeneratorClz)
+                    .addMethod(optMethod.build())
+                    .build();
+            System.out.println("add stmt, [optProxy] key: " + pointIntf + " type: " + optMethod + " on builder: " + mOpt3Method);
+            mOpt3Method.addStatement("$T.registerProxyGenerator($T.class, $L)", mExtensionPointClz, pointIntf, proxyGeneratorImpl);
+            mOpt3Method.nextControlFlow("catch ($T t)", ClassName.get("java.lang", "Throwable"));
+            mOpt3Method.addStatement("$T.e(\"registerProxyGenerator " + pointIntf + " error, ignored\", t)", ClassName.get("com.alibaba.ariver.kernel.common.utils", "RVLogger"));
+            mOpt3Method.endControlFlow();
         } catch (Throwable t) {
             t.printStackTrace();
         }
