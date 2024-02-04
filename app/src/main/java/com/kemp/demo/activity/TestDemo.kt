@@ -13,6 +13,7 @@ import com.kemp.demo.model.User
 import com.kemp.demo.utils.DebugLog
 import com.kemp.demo.utils.TestTime
 import com.kemp.demo.utils.TimeUtils
+import com.kemp.demo.utils.ToolUtils
 import com.tencent.mmkv.MMKV
 
 @Description("测试")
@@ -26,6 +27,9 @@ class TestDemo : ShowTextActivity() {
 //        TestTime.getTimeZoneInfo()
 //        testTime()
         testCommonLib()
+
+        val currentProcessName = ToolUtils.getCurrentProcessName(this)
+        setText("当前进程：$currentProcessName")
     }
 
     private fun testTime() {
