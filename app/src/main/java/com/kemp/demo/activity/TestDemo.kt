@@ -1,6 +1,12 @@
 package com.kemp.demo.activity
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Environment
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import com.kemp.annotations.Description
 import com.kemp.commonlib.piece.Piece
 import com.kemp.commonlib.tools.invoke
@@ -15,6 +21,7 @@ import com.kemp.demo.utils.TestTime
 import com.kemp.demo.utils.TimeUtils
 import com.kemp.demo.utils.ToolUtils
 import com.tencent.mmkv.MMKV
+import java.io.File
 
 @Description("测试")
 class TestDemo : ShowTextActivity() {
@@ -26,10 +33,32 @@ class TestDemo : ShowTextActivity() {
 //        TestTime.testCurrentTimeMillis()
 //        TestTime.getTimeZoneInfo()
 //        testTime()
-        testCommonLib()
+//        testCommonLib()
+        testFile()
+
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+//            != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this,
+//                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 100);
+//        } else {
+//            testMediaPlay()
+//        }
 
         val currentProcessName = ToolUtils.getCurrentProcessName(this)
         setText("当前进程：$currentProcessName")
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 100) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                testMediaPlay()
+            }
+        }
     }
 
     private fun testTime() {
@@ -67,5 +96,26 @@ class TestDemo : ShowTextActivity() {
         } else {
             DebugLog.d("person list Result is null")
         }
+    }
+
+    private fun testFile() {
+        val path = Environment.getExternalStorageDirectory().absolutePath
+        DebugLog.d("path: $path")
+//        val rootFile = File(path)
+        val rootFile = getExternalFilesDir(Environment.DIRECTORY_MUSIC)
+        DebugLog.d("root file: ${rootFile?.absolutePath ?: "null"}")
+        for (file: File in rootFile?.listFiles()!!) {
+            DebugLog.d("file: ${file.name}")
+        }
+    }
+
+    private fun testMediaPlay() {
+        val path = Environment.getExternalStorageDirectory().absolutePath;
+        val mediaPlayer = MediaPlayer()
+        mediaPlayer.setDataSource("$path/Music/我是愤怒.mp3")
+        mediaPlayer.setOnPreparedListener {
+            it.start()
+        }
+        mediaPlayer.prepare()
     }
 }
